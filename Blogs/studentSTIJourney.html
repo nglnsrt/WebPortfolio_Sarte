@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>First Year Student Blog (2023–2024)</title>
+  <style>
+    /* Base Styles */
+    :root {
+      --primary-blue: #1e88e5;
+      --light-blue: #bbdefb;
+      --lighter-blue: #e3f2fd;
+      --accent-blue: #64b5f6;
+      --dark-blue: #0d47a1;
+      --white: #ffffff;
+      --light-gray: #f5f5f5;
+      --medium-gray: #e0e0e0;
+      --text-color: #212121;
+      --text-light: #757575;
+    }
+    
+    body {
+      font-family: 'Segoe UI', 'Roboto', sans-serif;
+      line-height: 1.6;
+      color: var(--text-color);
+      background-color: var(--white);
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
+    
+    /* Animated Background Elements */
+    .background-elements {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      overflow: hidden;
+    }
+    
+    .circle {
+      position: absolute;
+      border-radius: 50%;
+      background-color: rgba(187, 222, 251, 0.3);
+      animation: float 15s linear infinite;
+      opacity: 0.7;
+    }
+    
+    @keyframes float {
+      0% {
+        transform: translateY(100vh) scale(0.5);
+      }
+      100% {
+        transform: translateY(-100px) scale(1);
+      }
+    }
+    
+    /* Layout */
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 2rem;
+      background-color: rgba(255, 255, 255, 0.95);
+      box-shadow: 0 0 30px rgba(30, 136, 229, 0.1);
+      position: relative;
+      margin-top: 2rem;
+      border-radius: 10px;
+    }
+    
+    /* Header & Title */
+    h1 {
+      color: var(--dark-blue);
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      position: relative;
+      padding-bottom: 1rem;
+      text-align: center;
+      animation: fadeIn 1s ease-out;
+    }
+    
+    h1::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary-blue), var(--accent-blue));
+      border-radius: 2px;
+    }
+    
+    h2 {
+      color: var(--primary-blue);
+      margin-top: 2rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--light-blue);
+      animation: fadeIn 0.8s ease-out;
+    }
+    
+    /* Blog Content */
+    .blog-content {
+      animation: slideUp 1s ease-out;
+    }
+    
+    .blog-content p {
+      margin-bottom: 1.2rem;
+      font-size: 1.1rem;
+    }
+    
+    .blog-content ul {
+      padding-left: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+    
+    .blog-content li {
+      margin-bottom: 0.5rem;
+      position: relative;
+    }
+    
+    .blog-content li::before {
+      content: '▹';
+      color: var(--accent-blue);
+      position: absolute;
+      left: -1.2rem;
+    }
+    
+    em {
+      color: var(--text-light);
+      display: block;
+      margin-bottom: 2rem;
+      font-style: normal;
+      font-size: 0.9rem;
+    }
+    
+    strong {
+      color: var(--dark-blue);
+    }
+    
+      .blog-image {
+    margin: 2rem 0;
+    text-align: center;
+  }
+
+  .blog-image img {
+    max-width: 60%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .blog-image img:hover {
+    transform: scale(1.02);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  .blog-image img[alt="bfp"] {
+    border: 1px solid #eee;
+  }
+  
+  .blog-image2 {
+    margin: 2rem 0;
+    text-align: center;
+  }
+
+  .blog-image2 img {
+    max-width: 40%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .blog-image2 img:hover {
+    transform: scale(1.02);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  .blog-image2 img[alt="bfp"] {
+    border: 1px solid #eee;
+  }
+
+
+    /* Buttons */
+    .back-btn {
+      background-color: var(--primary-blue);
+      color: white;
+      border: none;
+      padding: 0.6rem 1.2rem;
+      border-radius: 50px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-bottom: 1rem;
+      box-shadow: 0 2px 10px rgba(30, 136, 229, 0.3);
+    }
+    
+    .back-btn:hover {
+      background-color: var(--dark-blue);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(30, 136, 229, 0.4);
+    }
+    
+    /* Like Section */
+    .like-section {
+      margin: 2rem 0;
+      padding: 1rem;
+      background-color: var(--lighter-blue);
+      border-radius: 8px;
+      text-align: center;
+      animation: fadeIn 1.2s ease-out;
+    }
+    
+    .like-btn {
+      background-color: var(--primary-blue);
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-right: 0.5rem;
+    }
+    
+    .like-btn:hover {
+      background-color: var(--dark-blue);
+      transform: scale(1.05);
+    }
+    
+    .like-btn[aria-pressed="true"] {
+      background-color: var(--dark-blue);
+      box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+    }
+    
+    .like-count {
+      font-weight: bold;
+      color: var(--dark-blue);
+    }
+    
+    /* Comment Section */
+    .comment-section {
+      margin-top: 3rem;
+      animation: fadeIn 1.4s ease-out;
+    }
+    
+    .comment-section h2 {
+      color: var(--primary-blue);
+      margin-bottom: 1rem;
+    }
+    
+    #commentInput {
+      width: 100%;
+      padding: 1rem;
+      border: 2px solid var(--light-blue);
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: 1rem;
+      margin-bottom: 1rem;
+      transition: border 0.3s ease;
+      min-height: 100px;
+    }
+    
+    #commentInput:focus {
+      outline: none;
+      border-color: var(--accent-blue);
+    }
+    
+    .comment-submit {
+      background-color: var(--primary-blue);
+      color: white;
+      border: none;
+      padding: 0.7rem 1.5rem;
+      border-radius: 50px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .comment-submit:hover {
+      background-color: var(--dark-blue);
+      transform: translateY(-2px);
+      box-shadow: 0 2px 10px rgba(30, 136, 229, 0.3);
+    }
+    
+    .comments-list {
+      margin-top: 2rem;
+    }
+    
+    .comment {
+      background-color: var(--lighter-blue);
+      padding: 1rem;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+      animation: fadeIn 0.5s ease-out;
+    }
+    
+    /* Tags */
+    .tags {
+      margin-top: 3rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--medium-gray);
+      color: var(--text-light);
+      font-size: 0.9rem;
+    }
+    
+    .tags strong {
+      color: var(--primary-blue);
+    }
+    
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    
+    @keyframes slideUp {
+      from { 
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to { 
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .container {
+        padding: 1.5rem;
+        margin: 1rem;
+      }
+      
+      h1 {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Animated Background Elements -->
+  <div class="background-elements" id="backgroundElements"></div>
+  
+  <div class="container">
+    <button class="back-btn" aria-label="Go back to blog list" onclick="window.history.back()">← Back</button>
+    
+    <h1>My 2-Year IT Journey: From Curiosity to Confidence (2023–2025)</h1>
+    
+    <div class="blog-content">
+      <p>Exploring the latest technologies shaping the future of Technology.</p>
+      <p><em>Published on June 2, 2025</em></p>
+      
+      <p>Pursuing a 2-Year Information Technology (IT) course at STI College has been one of the most exciting and transformative decisions of my life. As someone who was curious about computers, coding, and how technology powers the world, STI's program gave me the perfect environment to explore and grow.</p>
+      
+        <div class="blog-image">
+          <img src="images/classm.jpeg" alt="bfp" />
+        </div>
+      <h2>Why I Chose STI</h2>
+      <p>I chose STI because of its industry-driven curriculum, hands-on approach, and strong track record in producing skilled IT professionals. The school's blended learning system, equipped computer laboratories, and experienced instructors made it clear that I was in the right place.</p>
+      
+      <h2>Year 1: Building the Foundations</h2>
+      <p>The first year focused on establishing a strong foundation in IT. Some of the core subjects I took included:</p>
+      <ul>
+        <li><strong>Computer Programming</strong> (using C#, Java, and Python)</li>
+        <li><strong>Database Management Systems</strong></li>
+      </ul>
+      <p>It was a mix of theory and practice. I still remember the first time I wrote a program that solved a real problem. That experience, paired with programming logic classes, helped me understand the power of code. It was overwhelming-coding languages, unfamiliar softwares, and technical jargons. 
+        But throughout the year, with the best help of our professors, with each activitY, assignments and projects, I started to find clarity and joy in solving problems. 
+      </p>
+      
+      <h2>Year 2: Specialization and Real-World Readiness</h2>
+      <p>The second year allowed us to dive deeper. We tackled subjects such as:</p>
+      <ul>
+        <li><strong>Mobile App Development</strong></li>
+        <li><strong>Object-Oriented Programming</strong></li>
+        <li><strong>Systems Analysis and Design</strong></li>
+        <li><strong>IT Capstone Project</strong></li>
+        <li><strong>On-the-Job Training (OJT)</strong></li>
+      </ul>
+      <p>The highlight of the year was our <strong>Capstone Project</strong>, where we developed a real-world application for a local business. Our group created a Daily Time Record with Payroll System using C# and SQL Server. It was both challenging and rewarding to present our final system to our panel.</p>
+      
+      <p>We also went through our <strong>OJT</strong> in Bureau Of Fire Protection, Alaminos City Pangasinan. That experience gave us a glimpse of how things work outside the classroom — dealing with clients and workmates, dealing with deadlines, learning to work in teams, and using professional ethics and tools.</p>
+      <p>Beyond academics, being part of STI gave me opportunities to grow personally. I joined tech competitions on Local level and reached Cluster Level as an Essay writer Representative of the campus, built a Capstone Project as a team leader, and collaborated with peers and classmates throughout our journey as students. These experiences boosted my confidence and network.</p>
+         <div class="blog-image2">
+          <img src="images/cluster.jpeg" alt="bfp" />
+        </div>
+
+      <h2>What's Next?</h2>
+      <p>As I prepare to graduate, I feel ready to take on roles connected to my course, or even pursue further studies in Computer Science. STI equipped me not just with knowledge, but with real-world skills and the discipline to keep learning.</p>
+      
+        <h2>Beyond the Halls: The Heart of our College Years</h2>
+     <p>As graduation draws near, a mix of joy and sadness fills our hearts.</p>
+
+<p>We’ve spent the last few years walking through the halls of STI, not just as students, but as dreamers, as friends, and as a family. Together, we’ve laughed until sometimes cried, struggled through deadlines, shared meals, secrets, and silent understanding. These weren’t just school years—they were life-defining moments.</p>
+
+<p>It’s incredible how fast time flew. One moment, we were nervously meeting each other for the first time; now, we’re counting the days until we say our goodbyes. With each sunrise, graduation gets closer. And with it comes the excitement of what’s next—freedom from alarm clocks, rushed submissions, and late-night cramming. There's a thrill in imagining the possibilities ahead, the careers we’ll build, the lives we’ll shape.</p>
+
+<p>But with that excitement comes a deep, quiet ache. Because it also means closing a chapter we’ll never get back. Soon, our everyday moments—quick chats between classes, shared jokes in the hallway, group projects that turned into bonding sessions—will become memories. Our paths will lead us to different places, and reunions will depend on timing and chances. That’s a hard truth to accept.</p>
+
+<p>For two unforgettable years, we stood beside each other—not just as classmates, but as companions on this shared journey. Our teachers became our second parents, guiding us with patience and kindness. Our friendships became anchors. And through every challenge, we found strength in one another.</p>
+
+<p>This experience has changed us. We’re not the same people who first stepped into this school. We’ve grown—more resilient, more hopeful, more human. STI wasn’t just a campus; it became our second home. A place where we laughed, cried, failed, succeeded, and truly belonged.</p>
+
+<p>As we prepare to walk across that stage, we carry with us everything we’ve learned and everyone we’ve loved here. This is not just a farewell—it's a thank you. To STI, to our mentors, to each other. Thank you for shaping us, for believing in us, and for making this journey unforgettable.</p>
+
+<p>We may be parting ways, but the memories and the love we’ve shared—those will always stay. STI will forever be a part of who we are.</p>
+
+      <p>To anyone considering the 2-Year IT course at STI: if you're passionate about technology and eager to learn, this is a path worth taking.</p>
+      
+      <footer class="tags">
+        <p><strong>Tags:</strong> #STICollege #InformationTechnology #ITStudentLife #CapstoneProject #2YearCourse</p>
+      </footer>
+    </div>
+    
+    <div class="like-section" aria-label="Like this blog post">
+      <button id="likeBtn" class="like-btn" aria-pressed="false" aria-label="Like button">👍 Like</button>
+      <span>Likes: <span id="likeCount" class="like-count">0</span></span>
+    </div>
+    
+    <div class="comment-section" aria-label="Comments section">
+      <h2>Comments</h2>
+      <textarea id="commentInput" placeholder="Write your comment here..." aria-label="Write a comment"></textarea>
+      <button id="submitComment" class="comment-submit" aria-label="Submit comment">Submit Comment</button>
+      
+      <div id="commentsList" class="comments-list" aria-live="polite" aria-relevant="additions"></div>
+    </div>
+  </div>
+  
+  <script>
+    // Create animated background circles
+    document.addEventListener('DOMContentLoaded', function() {
+      const background = document.getElementById('backgroundElements');
+      
+      for (let i = 0; i < 15; i++) {
+        const circle = document.createElement('div');
+        circle.classList.add('circle');
+        
+        // Random properties
+        const size = Math.random() * 200 + 50;
+        const posX = Math.random() * window.innerWidth;
+        const duration = Math.random() * 20 + 10;
+        const delay = Math.random() * 5;
+        
+        // Apply styles
+        circle.style.width = `${size}px`;
+        circle.style.height = `${size}px`;
+        circle.style.left = `${posX}px`;
+        circle.style.animationDuration = `${duration}s`;
+        circle.style.animationDelay = `${delay}s`;
+        
+        background.appendChild(circle);
+      }
+      
+      // Like button functionality
+      const likeBtn = document.getElementById('likeBtn');
+      const likeCount = document.getElementById('likeCount');
+      let likes = 0;
+      let liked = false;
+      
+      likeBtn.addEventListener('click', function() {
+        if (!liked) {
+          likes++;
+          likeCount.textContent = likes;
+          likeBtn.setAttribute('aria-pressed', 'true');
+          liked = true;
+          likeBtn.textContent = '👍 Liked!';
+        } else {
+          likes--;
+          likeCount.textContent = likes;
+          likeBtn.setAttribute('aria-pressed', 'false');
+          liked = false;
+          likeBtn.textContent = '👍 Like';
+        }
+      });
+      
+      // Comment functionality
+      const commentInput = document.getElementById('commentInput');
+      const submitComment = document.getElementById('submitComment');
+      const commentsList = document.getElementById('commentsList');
+      
+      submitComment.addEventListener('click', function() {
+        const commentText = commentInput.value.trim();
+        if (commentText) {
+          const commentDiv = document.createElement('div');
+          commentDiv.classList.add('comment');
+          commentDiv.textContent = commentText;
+          commentsList.prepend(commentDiv);
+          commentInput.value = '';
+        }
+      });
+      
+      // Allow Enter key to submit comment
+      commentInput.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter' && !e.shiftKey) {
+          e.preventDefault();
+          submitComment.click();
+        }
+      });
+    });
+  </script>
+</body>
+</html>

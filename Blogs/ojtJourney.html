@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Second Year Student Blog (2024–2025)</title>
+  <style>
+    /* Base Styles */
+    :root {
+      --primary-blue: #1e88e5;
+      --light-blue: #bbdefb;
+      --lighter-blue: #e3f2fd;
+      --accent-blue: #64b5f6;
+      --dark-blue: #0d47a1;
+      --white: #ffffff;
+      --light-gray: #f5f5f5;
+      --medium-gray: #e0e0e0;
+      --text-color: #212121;
+      --text-light: #757575;
+    }
+    
+    body {
+      font-family: 'Segoe UI', 'Roboto', sans-serif;
+      line-height: 1.6;
+      color: var(--text-color);
+      background-color: var(--white);
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
+    
+    /* Animated Background Elements */
+    .background-elements {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      overflow: hidden;
+    }
+    
+    .circle {
+      position: absolute;
+      border-radius: 50%;
+      background-color: rgba(187, 222, 251, 0.3);
+      animation: float 15s linear infinite;
+      opacity: 0.7;
+    }
+    
+    @keyframes float {
+      0% {
+        transform: translateY(100vh) scale(0.5);
+      }
+      100% {
+        transform: translateY(-100px) scale(1);
+      }
+    }
+    
+    /* Layout */
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 2rem;
+      background-color: rgba(255, 255, 255, 0.95);
+      box-shadow: 0 0 30px rgba(30, 136, 229, 0.1);
+      position: relative;
+      margin-top: 2rem;
+      border-radius: 10px;
+    }
+    
+    /* Header & Title */
+    h1 {
+      color: var(--dark-blue);
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      position: relative;
+      padding-bottom: 1rem;
+      text-align: center;
+      animation: fadeIn 1s ease-out;
+    }
+    
+    h1::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary-blue), var(--accent-blue));
+      border-radius: 2px;
+    }
+    
+    h2 {
+      color: var(--primary-blue);
+      margin-top: 2rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--light-blue);
+      animation: fadeIn 0.8s ease-out;
+    }
+    
+    /* Blog Content */
+    .blog-content {
+      animation: slideUp 1s ease-out;
+    }
+    
+    .blog-content p {
+      margin-bottom: 1.2rem;
+      font-size: 1.1rem;
+    }
+    
+    .blog-content ul {
+      padding-left: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+    
+    .blog-content li {
+      margin-bottom: 0.5rem;
+      position: relative;
+    }
+    
+    .blog-content li::before {
+      content: '▹';
+      color: var(--accent-blue);
+      position: absolute;
+      left: -1.2rem;
+    }
+    
+    em {
+      color: var(--text-light);
+      display: block;
+      margin-bottom: 2rem;
+      font-style: normal;
+      font-size: 0.9rem;
+    }
+    
+    strong {
+        color: var(--dark-blue);
+      }
+  .blog-image {
+    margin: 2rem 0;
+    text-align: center;
+  }
+
+  .blog-image img {
+    max-width: 60%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .blog-image img:hover {
+    transform: scale(1.02);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  .blog-image img[alt="bfp"] {
+    border: 1px solid #eee;
+  }
+
+  .blog-image2 {
+    margin: 2rem 0;
+    text-align: center;
+  }
+
+  .blog-image2 img {
+    max-width: 40%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .blog-image2 img:hover {
+    transform: scale(1.02);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  .blog-image2 img[alt="bfp"] {
+    border: 1px solid #eee;
+  }
+
+
+    
+    /* Buttons */
+    .back-btn {
+      background-color: var(--primary-blue);
+      color: white;
+      border: none;
+      padding: 0.6rem 1.2rem;
+      border-radius: 50px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-bottom: 1rem;
+      box-shadow: 0 2px 10px rgba(30, 136, 229, 0.3);
+    }
+    
+    .back-btn:hover {
+      background-color: var(--dark-blue);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(30, 136, 229, 0.4);
+    }
+    
+    /* Like Section */
+    .like-section {
+      margin: 2rem 0;
+      padding: 1rem;
+      background-color: var(--lighter-blue);
+      border-radius: 8px;
+      text-align: center;
+      animation: fadeIn 1.2s ease-out;
+    }
+    
+    .like-btn {
+      background-color: var(--primary-blue);
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-right: 0.5rem;
+    }
+    
+    .like-btn:hover {
+      background-color: var(--dark-blue);
+      transform: scale(1.05);
+    }
+    
+    .like-btn[aria-pressed="true"] {
+      background-color: var(--dark-blue);
+      box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+    }
+    
+    .like-count {
+      font-weight: bold;
+      color: var(--dark-blue);
+    }
+    
+    /* Comment Section */
+    .comment-section {
+      margin-top: 3rem;
+      animation: fadeIn 1.4s ease-out;
+    }
+    
+    .comment-section h2 {
+      color: var(--primary-blue);
+      margin-bottom: 1rem;
+    }
+    
+    #commentInput {
+      width: 100%;
+      padding: 1rem;
+      border: 2px solid var(--light-blue);
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: 1rem;
+      margin-bottom: 1rem;
+      transition: border 0.3s ease;
+      min-height: 100px;
+    }
+    
+    #commentInput:focus {
+      outline: none;
+      border-color: var(--accent-blue);
+    }
+    
+    .comment-submit {
+      background-color: var(--primary-blue);
+      color: white;
+      border: none;
+      padding: 0.7rem 1.5rem;
+      border-radius: 50px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .comment-submit:hover {
+      background-color: var(--dark-blue);
+      transform: translateY(-2px);
+      box-shadow: 0 2px 10px rgba(30, 136, 229, 0.3);
+    }
+    
+    .comments-list {
+      margin-top: 2rem;
+    }
+    
+    .comment {
+      background-color: var(--lighter-blue);
+      padding: 1rem;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+      animation: fadeIn 0.5s ease-out;
+    }
+    
+    /* Tags */
+    .tags {
+      margin-top: 3rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--medium-gray);
+      color: var(--text-light);
+      font-size: 0.9rem;
+    }
+    
+    .tags strong {
+      color: var(--primary-blue);
+    }
+    
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    
+    @keyframes slideUp {
+      from { 
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to { 
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .container {
+        padding: 1.5rem;
+        margin: 1rem;
+      }
+      
+      h1 {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Animated Background Elements -->
+  <div class="background-elements" id="backgroundElements"></div>
+
+<div class="container">
+    <button class="back-btn" aria-label="Go back to blog list" onclick="window.history.back()">← Back</button>
+
+
+    <h1>Flames and Frameworks: My IT Internship at the Bureau of Fire Protection</h1>
+
+    <div class="blog-image">
+          <img src="images/bfp1.png" alt="bfp" />
+        </div>
+
+    <div class="blog-content">
+
+      <h2>Technologies Behind</h2>
+      <p>When people hear “Bureau of Fire Protection,” they usually picture firefighters in action—responding to emergencies, saving lives, and keeping communities safe. What they don’t often see is the technology working silently behind the scenes. That’s where my role as an IT student came in.</p>
+      <h2>Works I did</h2>
+      <p>During my On-the-Job Training at BFP, I didn’t carry a hose or wear a fire suit—instead, I worked with systems, documents, and data. My tasks ranged from helping with their online system, assisting clients, processing business renewals for Fire Safety Certificates and Clearances, encoding data on their database, logging records, profiling documents, and editing documents and poster.
+</p>
+  <div class="blog-image2">
+          <img src="images/bfp5.jpeg" alt="bfp" />
+        </div>
+      <h2>Learnings to carry for my future endeavours</h2>
+      <p> Whether I was helping with a computer related works or helping organize digital files, I realized that even behind the flames, frameworks—both literal and digital—are what keep the operation running smoothly.</p>
+      
+   <div class="blog-image">
+          <img src="images/bfp2.png" alt="bfp" />
+        </div>
+
+
+      <p>This internship helped me grow not just as a tech student, but as a team player in a real-world environment. I came in expecting to just apply what I learned in school—but I left with a deeper appreciation for public service, responsibility, and the role of IT in keeping operations efficient and effective.</p>
+      
+      <h3>Stay tuned for more updates as I continue my journey in the world of software development!</h3>
+    </div>
+
+    <div class="like-section" aria-label="Like this blog post">
+      <button id="likeBtn" class="like-btn" aria-pressed="false" aria-label="Like button">👍 Like</button>
+      <span>Likes: <span id="likeCount" class="like-count">0</span></span>
+    </div>
+
+    <div class="comment-section" aria-label="Comments section">
+      <h2>Comments</h2>
+      <textarea id="commentInput" placeholder="Write your comment here..." aria-label="Write a comment"></textarea>
+      <button id="submitComment" class="comment-submit" aria-label="Submit comment">Submit Comment</button>
+
+      <div id="commentsList" class="comments-list" aria-live="polite" aria-relevant="additions"></div>
+    </div>
+</div>
+<script>
+    // Create animated background circles
+    document.addEventListener('DOMContentLoaded', function() {
+      const background = document.getElementById('backgroundElements');
+      
+      for (let i = 0; i < 15; i++) {
+        const circle = document.createElement('div');
+        circle.classList.add('circle');
+        
+        // Random properties
+        const size = Math.random() * 200 + 50;
+        const posX = Math.random() * window.innerWidth;
+        const duration = Math.random() * 20 + 10;
+        const delay = Math.random() * 5;
+        
+        // Apply styles
+        circle.style.width = `${size}px`;
+        circle.style.height = `${size}px`;
+        circle.style.left = `${posX}px`;
+        circle.style.animationDuration = `${duration}s`;
+        circle.style.animationDelay = `${delay}s`;
+        
+        background.appendChild(circle);
+      }
+      
+      // Like button functionality
+      const likeBtn = document.getElementById('likeBtn');
+      const likeCount = document.getElementById('likeCount');
+      let likes = 0;
+      let liked = false;
+      
+      likeBtn.addEventListener('click', function() {
+        if (!liked) {
+          likes++;
+          likeCount.textContent = likes;
+          likeBtn.setAttribute('aria-pressed', 'true');
+          liked = true;
+          likeBtn.textContent = '👍 Liked!';
+        } else {
+          likes--;
+          likeCount.textContent = likes;
+          likeBtn.setAttribute('aria-pressed', 'false');
+          liked = false;
+          likeBtn.textContent = '👍 Like';
+        }
+      });
+      
+      // Comment functionality
+      const commentInput = document.getElementById('commentInput');
+      const submitComment = document.getElementById('submitComment');
+      const commentsList = document.getElementById('commentsList');
+      
+      submitComment.addEventListener('click', function() {
+        const commentText = commentInput.value.trim();
+        if (commentText) {
+          const commentDiv = document.createElement('div');
+          commentDiv.classList.add('comment');
+          commentDiv.textContent = commentText;
+          commentsList.prepend(commentDiv);
+          commentInput.value = '';
+        }
+      });
+      
+      // Allow Enter key to submit comment
+      commentInput.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter' && !e.shiftKey) {
+          e.preventDefault();
+          submitComment.click();
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
